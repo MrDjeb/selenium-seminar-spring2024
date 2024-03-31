@@ -26,7 +26,6 @@ def credentials():
 def cookies(credentials, config):
         pass
 
-
 class LoginPage(BasePage):
     url = 'https://park.vk.company/'
 
@@ -39,7 +38,7 @@ class MainPage(BasePage):
 
 
 class TestLogin(BaseCase):
-    authorize = True
+    authorize    = True
 
     def test_login(self, credentials):
         pass
