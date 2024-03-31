@@ -20,3 +20,10 @@ class MainPageLocators(BasePageLocators):
 
 class EventsPageLocators(BasePageLocators):
     pass
+
+class ParkVKLocators:
+    LOGIN_BUTTON = (By.CSS_SELECTOR, '.nav__button__menu>a')
+    GITHUB_OAUTH_LINK = (By.CSS_SELECTOR, 'a.social-link[href="/social/login/github/"]')
+    
+
+    

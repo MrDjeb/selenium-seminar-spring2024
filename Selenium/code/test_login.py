@@ -1,7 +1,11 @@
 import pytest
 from _pytest.fixtures import FixtureRequest
+import time
 
 from ui.pages.base_page import BasePage
+from selenium.webdriver.support.wait import WebDriverWait
+
+
 
 
 class BaseCase:
@@ -13,6 +17,8 @@ class BaseCase:
         self.config = config
 
         self.login_page = LoginPage(driver)
+        #self.LKPage\
+
         if self.authorize:
             print('Do something for login')
 
@@ -30,11 +36,27 @@ class LoginPage(BasePage):
     url = 'https://park.vk.company/'
 
     def login(self, user, password):
+        login_button = self.driver.find_element(*basic_locators.ParkVKLocators.LOGIN_BUTTON)
+        login_button.click()
+
+        github_oauth_link = self.driver.find_element(*basic_locators.ParkVKLocators.GITHUB_OAUTH_LINK)
+
+        time.sleep(5)
+        #WebDriverWait(self.driver, 10).until(EC.url_to_be('https://park.vk.company/feed/'))
+
         return MainPage(self.driver)
 
 
 class MainPage(BasePage):
     url = 'https://park.vk.company/feed/'
+
+    def __init__(self, driver):
+        self.driver = driver
+
+    def click_menu_item(self, item_name):
+        menu_item = self.driver.find_element(By.LINK_TEXT, item_name)
+        time.sleep(2)
+        menu_item.click()
 
 
 class TestLogin(BaseCase):
